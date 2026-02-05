@@ -8,10 +8,15 @@ LED SK8612 RGBW LED Strip
 
 # Pads betekenis:
 
-5V: Power for the LEDs
-GND: Ground
-DIN: Data IN (van de microcontroller)
-DO: Data OUT (naar het volgende LED / strip)
-Each LED passes the remaining data from DO → next LED’s DIN
+- 5V: Power for the LEDs
+- GND: Ground
+- DIN: Data IN (van de microcontroller)
+- DO: Data OUT (naar het volgende LED / strip)
+- Each LED passes the remaining data from DO → next LED’s DIN
 
+| Pin      | Arduino                |
+|----------|------------------------|
+| 5V       | 5V (van een BEC)       |
+| DIN      | Digitale pin (bv. D6)  |
+| GND      | GND                    |
 
