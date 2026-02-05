@@ -17,7 +17,7 @@ git add .
 git commit -m "een bericht met de veranderingen dat je hebt gemaakt"
 git push 
 ```
-als **git push** net werkt, probeer:
+als **git push** niet werkt, probeer:
 ```bash
 git push origin main
 ```
@@ -27,12 +27,25 @@ git push origin main
 git status
 ```
 
+### **Merge conflicten**
+een merge conflict is wanneer twee personen een verandering hebben gemaakt aan dezelfde lijnen van een file en git weet niet welke versie te houden en welke weg te doen. 
 
-
-
-
-
-
-
+### **Om het te fixen, pull eerst**
+```bash
+git pull
+```
+### **Open de files waar er een conflict is. daar zal je jouw veranderingen zien, en de nieuwe veranderingen.**
+```bash
+<<<<<<<<< HEAD
+your changes
+=========
+incoming changes
+```
+### **Kies wat je wilt behouden en wat je weg wilt doen en mark als solved, en dan opnieuw:**
+```bash
+git add .
+git commit -m "een bericht met de veranderingen dat je hebt gemaakt"
+git push 
+```
 
 
