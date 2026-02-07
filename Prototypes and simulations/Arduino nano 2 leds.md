@@ -1,39 +1,42 @@
-# BrakeNBlink
-Brake N Blink is een (semi) automatisch rem en richtingaanwijzersysteem voor fietsen dat
-de zichtbaarheid en veiligheid van fietsers verhoogt. Het detecteert automatisch via een IMU/Knoppen of de fietser remt/gaat afslaan en stuurt zo de remlichten en richtingaanwijzers aan.
-
+![Arduino nano 2 leds](image.png)
 ---
+const int led1 = 3;
+const int led2 = 4;
 
-## Doel van het project
-Fietser behoren zijn kwetsbare weggebuikers, vooral in steden of omgevingen met een beperkte zichtbaarheid. Brake N Blink verhoogt de zichtbaarheid (zeker s'nachts) van de fietser voor andere weggebruikers
+const int button1 = 2;
+const int button2 = 5;
 
----
-## Idee
+bool led1State = false;
+bool led2State = false;
 
-### Basis
-Achteraan zit een microcontroller die de remlichten aanstuurt op basis van een interne IMU. De richtingaanwijzers worden bediend via een stuurmodule die draadloos verbonden is via Bluetooth.
+bool lastButton1 = HIGH;
+bool lastButton2 = HIGH;
 
-### Vooraan
-Drukknoppen voor de linker- en rechterrichtingaanwijzer, verbonden via Bluetooth met de achterste controlemodule. Eigen batterijvoorziening.
+void setup() {
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
 
----
+  pinMode(button1, INPUT_PULLUP);
+  pinMode(button2, INPUT_PULLUP);
+}
 
-## Repository structuur
+void loop() {
+  bool currentButton1 = digitalRead(button1);
+  bool currentButton2 = digitalRead(button2);
 
+  // --- Toggle LED 1 ---
+  if (lastButton1 == HIGH && currentButton1 == LOW) {
+    led1State = !led1State;          // wissel aan/uit
+    digitalWrite(led1, led1State);
+    delay(200);                      // simpele debounce
+  }
+  lastButton1 = currentButton1;
 
-
----
-
-## Team
-dit project is gemaakt door:
-
-- **Tom Pladijs** - fase 2, Elektronica
-- **Owen Bruneel** - fase 1, Elektronica ICT
-- **Timo Sinnaeve** - fase 1, Elektronica ICT
-- **Aaron Lestarquit** - fase 1, Elektronica ICT
-- **Adonai Brouwers** - fase 1, Elektronica ICT
-
-## Uitbreiding
-
-Tekstweergave in de spaken via een microcontroller met interne batterij.
-
+  // --- Toggle LED 2 ---
+  if (lastButton2 == HIGH && currentButton2 == LOW) {
+    led2State = !led2State;
+    digitalWrite(led2, led2State);
+    delay(200);
+  }
+  lastButton2 = currentButton2;
+}
