@@ -1,4 +1,5 @@
 LED SK8612 RGBW LED Strip
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/5331d101-ad78-406b-be5b-abb65294f18e" />
 
 # specificaties:
 - Voltage: DC5V
@@ -17,6 +18,6 @@ LED SK8612 RGBW LED Strip
 | Pin      | Arduino                |
 |----------|------------------------|
 | 5V       | 5V (van een BEC)       |
-| DIN      | Digitale pin (bv. D6)  |
+| DIN/DOUT | Digitale pin (bv. D6)  |
 | GND      | GND                    |
 
