@@ -2,6 +2,7 @@
 Als developer environment maken we gebruik van Arduino IDE. Installatielink: https://www.arduino.cc/en/software/
 
 Na het installeren moet er in de IDE zelf nog een package geïnstalleerd worden.
+
 <img width="934" height="711" alt="INSTALL-BLE-SENSE-REV2-IDE" src="https://github.com/user-attachments/assets/6ca0f3e2-cfe8-4323-a848-d1528d79fcf1" />
 
 
