@@ -1,3 +1,9 @@
+# Developer Environment
+Als developer environment maken we gebruik van Arduino IDE. Installatielink: https://www.arduino.cc/en/software/
+Na het installeren moet er in de IDE zelf nog een package geïnstalleerd worden.
+
+
+
 # Arduino PIN OUT
 
 <img width="1241" height="1384" alt="Screenshot 2026-02-11 130555" src="https://github.com/user-attachments/assets/a7aa24b6-5284-42cd-b70a-9c0026905c1d" />
