@@ -2,7 +2,7 @@
 Als developer environment maken we gebruik van Arduino IDE. Installatielink: https://www.arduino.cc/en/software/
 
 Na het installeren moet er in de IDE zelf nog een package geïnstalleerd worden.
-
+<img width="934" height="711" alt="INSTALL-BLE-SENSE-REV2-IDE" src="https://github.com/user-attachments/assets/6ca0f3e2-cfe8-4323-a848-d1528d79fcf1" />
 
 
 # Arduino PIN OUT
@@ -14,3 +14,4 @@ Na het installeren moet er in de IDE zelf nog een package geïnstalleerd worden.
 IMU uitleg: https://docs.arduino.cc/tutorials/nano-33-ble-sense-rev2/imu-accelerometer/?_gl=1*qywlfg*_up*MQ..*_ga*MjIyMTg4MzI4LjE3NzAyOTIxMzQ.*_ga_NEXN8H46L5*czE3NzAyOTIxMzIkbzEkZzAkdDE3NzAyOTIxMzIkajYwJGwwJGgxMTYyNDkxODk4
 
 Bluetooth uitleg: https://docs.arduino.cc/tutorials/nano-33-ble-sense/ble-device-to-device/?_gl=1*q0q75q*_up*MQ..*_ga*MTYyODgzNTAyMC4xNzcwMjkzMzM5*_ga_NEXN8H46L5*czE3NzAyOTMzMzgkbzEkZzAkdDE3NzAyOTMzMzgkajYwJGwwJGgxMTczOTI2ODI2
+
