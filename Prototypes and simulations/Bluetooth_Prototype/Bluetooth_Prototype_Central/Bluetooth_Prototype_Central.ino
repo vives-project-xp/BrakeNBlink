@@ -11,11 +11,14 @@ unsigned long lastDebounceTime2 = 0;
 unsigned long debounceDelay = 150;
 int lastButtonState = HIGH;
 int lastButtonState2 = HIGH;
+const int connectionLed = 4;
 
 void setup() {
   Serial.begin(9600);
   pinMode(buttonPin, INPUT_PULLUP);
   pinMode(buttonPin2, INPUT_PULLUP); // Button to GND
+  pinMode(connectionLed, OUTPUT);    // Connection Status LED
+  digitalWrite(connectionLed, LOW); // Start OFF
 
   
   if (!BLE.begin()) {
@@ -41,6 +44,8 @@ void loop() {
 
 void controlPeripheral(BLEDevice peripheral) {
   if (!peripheral.connect()) return;
+
+  digitalWrite(connectionLed, HIGH);
   if (!peripheral.discoverAttributes()) {
     peripheral.disconnect();
     return;

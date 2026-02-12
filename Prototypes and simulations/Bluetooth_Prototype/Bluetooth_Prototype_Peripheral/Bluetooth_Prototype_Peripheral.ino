@@ -13,11 +13,13 @@ const int blinkInterval = 500; // Blink speed in milliseconds
 bool ledToggleState = false;
 const int led1 = 2;
 const int led2 = 3;
+const int led3 = 4;
 
 void setup() {
   Serial.begin(9600);
   pinMode(led1, OUTPUT);
   pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
 
   while (!Serial);   
   
@@ -43,38 +45,37 @@ void setup() {
 
 void loop() {
   BLEDevice central = BLE.central();
-
   if (central) {
     Serial.print("* Connected to central: ");
     Serial.println(central.address());
 
     while (central.connected()) {
       while (central.connected()) {
-  // 1. Check for new Bluetooth data
-  if (dataCharacteristic.written()) {
-    handleIncomingData(dataCharacteristic.value());
-  }
+        // 1. Check for new Bluetooth data
+        if (dataCharacteristic.written()) {
+          handleIncomingData(dataCharacteristic.value());
+        }
 
-  // 2. The Blinking Timer (Non-blocking)
-  if (millis() - lastBlinkTime >= blinkInterval) {
-    lastBlinkTime = millis();
-    ledToggleState = !ledToggleState; // Flip the blink state
+        // 2. The Blinking Timer (Non-blocking)
+        if (millis() - lastBlinkTime >= blinkInterval) {
+          lastBlinkTime = millis();
+          ledToggleState = !ledToggleState; // Flip the blink state
 
-    // If LED 1 is supposed to blink, apply the toggle
-    if (blinkLed1) {
-      digitalWrite(led1, ledToggleState ? LOW : HIGH);
-    }
+          // If LED 1 is supposed to blink, apply the toggle
+          if (blinkLed1) {
+            digitalWrite(led1, ledToggleState ? LOW : HIGH);
+          }
     
-    // If LED 2 is supposed to blink, apply the toggle
-    if (blinkLed2) {
-      digitalWrite(led2, ledToggleState ? LOW : HIGH);
-    }
-  }
-}
+          // If LED 2 is supposed to blink, apply the toggle
+          if (blinkLed2) {
+            digitalWrite(led2, ledToggleState ? LOW : HIGH);
+          }
+        }
+      }
       // Check if the central device wrote a new value
       if (dataCharacteristic.written()) {
-         byte receivedValue = dataCharacteristic.value();
-         handleIncomingData(receivedValue);
+        byte receivedValue = dataCharacteristic.value();
+        handleIncomingData(receivedValue);
       }
     }
     
