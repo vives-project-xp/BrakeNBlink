@@ -1,5 +1,5 @@
 # Developer Environment
-Als developer environment maken we gebruik van Arduino IDE. Installatielink: https://www.arduino.cc/en/software/
+Als developer environment maken we gebruik van Arduino IDE. Installatielink: https://www.arduino.cc/en/software/ /n
 Na het installeren moet er in de IDE zelf nog een package geïnstalleerd worden.
 
 
