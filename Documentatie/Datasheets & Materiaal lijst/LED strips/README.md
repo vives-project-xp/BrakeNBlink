@@ -1,5 +1,6 @@
+<img width="620" height="363" alt="image" src="https://github.com/user-attachments/assets/12f8987a-fb44-43f0-9ed4-7e1c53ca8723" />
+
 LED SK8612 RGBW LED Strip
-<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/5331d101-ad78-406b-be5b-abb65294f18e" />
 
 # specificaties:
 - Voltage: DC5V
