@@ -40,10 +40,10 @@ Nadelen:  Niet goed voor vibraties en vaak ook niet waterdicht.
 een 3 switch knop, waarbij er 3 mogelijk positie's zijn. links, midden en rechts. Wordt gebruikt op de meeste motors en dus daardoor bekend. Handig als de fietser de button naar een kant duwt voor bv. de linkerrichtingaanwijzers aan te steken. Er kan altijd maar 1 richtingaanwijzer aan en de fietser kan zelf kiezen om het te stoppen. LOW -> Active
 
 Layout:
-Links - Midden (uit) - Rechts
+- Links - Midden (uit) - Rechts
 
 Wiring:
-Links -> 1ste digitale pin (Bv. D1)
-Common -> GND
-Rechts -> 2de digitale pin (Bv. D2)
+- Links -> 1ste digitale pin (Bv. D1)
+- Common -> GND
+- Rechts -> 2de digitale pin (Bv. D2)
 
