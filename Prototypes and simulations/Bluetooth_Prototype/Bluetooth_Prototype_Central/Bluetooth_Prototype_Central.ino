@@ -16,9 +16,9 @@ const int connectionLed = 4;
 void setup() {
   Serial.begin(9600);
   pinMode(buttonPin, INPUT_PULLUP);
-  pinMode(buttonPin2, INPUT_PULLUP); // Button to GND
-  pinMode(connectionLed, OUTPUT);    // Connection Status LED
-  digitalWrite(connectionLed, LOW); // Start OFF
+  pinMode(buttonPin2, INPUT_PULLUP);
+  pinMode(connectionLed, OUTPUT);
+  digitalWrite(connectionLed, LOW);
 
   
   if (!BLE.begin()) {
@@ -37,7 +37,7 @@ void loop() {
     if (peripheral.localName() == "Nano 33 BLE Peripheral") {
       BLE.stopScan();
       controlPeripheral(peripheral);
-      BLE.scanForUuid(deviceServiceUuid); // Resume scanning after disconnect
+      BLE.scanForUuid(deviceServiceUuid);
     }
   }
 }
@@ -54,13 +54,13 @@ void controlPeripheral(BLEDevice peripheral) {
   BLECharacteristic dataChar = peripheral.characteristic(deviceServiceCharacteristicUuid);
   
   while (peripheral.connected()) {
-    // --- Handle Button 1 Toggle ---
+
     int reading1 = digitalRead(buttonPin);
 
-    // Check if button is pressed AND if enough time has passed (Debounce)
+
     if (reading1 == LOW && (millis() - lastDebounceTime1 > debounceDelay)) {
   
-      led1IsOn = !led1IsOn; // Flip the switch
+      led1IsOn = !led1IsOn;
   
      if (led1IsOn) {
      Serial.println("Button 1 Toggled: Sending 1 (LED ON)");
@@ -70,15 +70,14 @@ void controlPeripheral(BLEDevice peripheral) {
      dataChar.writeValue((byte)2);
      }
   
-      lastDebounceTime1 = millis(); // Reset the timer
+      lastDebounceTime1 = millis();
     }
 
-    // --- Handle Button 2 Toggle ---
     int reading2 = digitalRead(buttonPin2);
 
     if (reading2 == LOW && (millis() - lastDebounceTime2 > debounceDelay)) {
   
-      led2IsOn = !led2IsOn; // Flip the switch
+      led2IsOn = !led2IsOn;
   
       if (led2IsOn) {
         Serial.println("Button 2 Toggled: Sending 3 (LED ON)");
