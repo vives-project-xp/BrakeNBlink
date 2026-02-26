@@ -53,41 +53,34 @@ void controlPeripheral(BLEDevice peripheral) {
 
   BLECharacteristic dataChar = peripheral.characteristic(deviceServiceCharacteristicUuid);
   
-  while (peripheral.connected()) {
+while (peripheral.connected()) {
+  int reading1 = digitalRead(buttonPin);
+  int reading2 = digitalRead(buttonPin2);
 
-    int reading1 = digitalRead(buttonPin);
+  if (reading1 == LOW && (millis() - lastDebounceTime1 > debounceDelay)) {
+    led1IsOn = !led1IsOn;
 
-
-    if (reading1 == LOW && (millis() - lastDebounceTime1 > debounceDelay)) {
-  
-      led1IsOn = !led1IsOn;
-  
-     if (led1IsOn) {
-     Serial.println("Button 1 Toggled: Sending 1 (LED ON)");
-     dataChar.writeValue((byte)1);
-      } else {
-      Serial.println("Button 1 Toggled: Sending 2 (LED OFF)");
-     dataChar.writeValue((byte)2);
-     }
-  
-      lastDebounceTime1 = millis();
+    if (led1IsOn) {
+      dataChar.writeValue((byte)1);
+      
+      led2IsOn = false; 
+    } else {
+      dataChar.writeValue((byte)2);
     }
-
-    int reading2 = digitalRead(buttonPin2);
-
-    if (reading2 == LOW && (millis() - lastDebounceTime2 > debounceDelay)) {
-  
-      led2IsOn = !led2IsOn;
-  
-      if (led2IsOn) {
-        Serial.println("Button 2 Toggled: Sending 3 (LED ON)");
-        dataChar.writeValue((byte)3);
-      } else {
-        Serial.println("Button 2 Toggled: Sending 4 (LED OFF)");
-        dataChar.writeValue((byte)4);
-      }
-  
-      lastDebounceTime2 = millis();
-    }
+    lastDebounceTime1 = millis();
   }
+
+  if (reading2 == LOW && (millis() - lastDebounceTime2 > debounceDelay)) {
+    led2IsOn = !led2IsOn;
+
+    if (led2IsOn) {
+      dataChar.writeValue((byte)3);
+
+      led1IsOn = false;
+    } else {
+      dataChar.writeValue((byte)4);
+    }
+    lastDebounceTime2 = millis();
+  }
+}
 }
