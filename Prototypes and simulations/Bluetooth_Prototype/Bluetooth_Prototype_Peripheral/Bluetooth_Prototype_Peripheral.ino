@@ -126,25 +126,25 @@ void loop() {
 void handleIncomingData(byte value) {
   switch (value) {
     case 1:
-      blinkLed1 = true;  
-      blinkLed2 = false; 
-      digitalWrite(led2, LOW);
-      break; 
-
-    case 2:
-      blinkLed1 = false; 
-      digitalWrite(led1, LOW); 
+      if (blinkLed1) {
+        blinkLed1 = false;
+        digitalWrite(led1, LOW);
+      } else {
+        blinkLed1 = true;
+        blinkLed2 = false;
+        digitalWrite(led2, LOW);
+      }
       break;
 
     case 3:
-      blinkLed2 = true;  
-      blinkLed1 = false; 
-      digitalWrite(led1, LOW);
-      break; 
-
-    case 4:
-      blinkLed2 = false; 
-      digitalWrite(led2, LOW); 
+      if (blinkLed2) {
+        blinkLed2 = false;
+        digitalWrite(led2, LOW);
+      } else {
+        blinkLed2 = true;
+        blinkLed1 = false;
+        digitalWrite(led1, LOW);
+      }
       break;
   }
 }

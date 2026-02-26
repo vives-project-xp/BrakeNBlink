@@ -58,29 +58,15 @@ void controlPeripheral(BLEDevice peripheral) {
     int reading1 = digitalRead(buttonPin);
     int reading2 = digitalRead(buttonPin2);
 
-    if (reading1 == LOW && (millis() - lastDebounceTime1 > debounceDelay)) {
-      led1IsOn = !led1IsOn;
 
-      if (led1IsOn) {
-        dataChar.writeValue((byte)1);
-      
-        led2IsOn = false; 
-      } else {
-        dataChar.writeValue((byte)2);
-      }
+    if (reading1 == LOW && (millis() - lastDebounceTime1 > debounceDelay)) {
+      dataChar.writeValue((byte)1); 
       lastDebounceTime1 = millis();
     }
 
+
     if (reading2 == LOW && (millis() - lastDebounceTime2 > debounceDelay)) {
-      led2IsOn = !led2IsOn;
-
-      if (led2IsOn) {
-        dataChar.writeValue((byte)3);
-
-        led1IsOn = false;
-      } else {
-        dataChar.writeValue((byte)4);
-      }
+      dataChar.writeValue((byte)3); 
       lastDebounceTime2 = millis();
     }
   }
