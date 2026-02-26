@@ -20,7 +20,7 @@ void setup() {
   pinMode(connectionLed, OUTPUT);
   digitalWrite(connectionLed, LOW);
 
-  
+  // bluetooth starten
   if (!BLE.begin()) {
     Serial.println("- BLE failed!");
     while (1);
@@ -29,7 +29,7 @@ void setup() {
   BLE.scanForUuid(deviceServiceUuid);
   Serial.println("Scanning for Peripheral...");
 }
-
+// meer bluetooth
 void loop() {
   BLEDevice peripheral = BLE.available();
 
@@ -41,7 +41,7 @@ void loop() {
     }
   }
 }
-
+// meer bluetooth
 void controlPeripheral(BLEDevice peripheral) {
   if (!peripheral.connect()) return;
 
@@ -52,35 +52,36 @@ void controlPeripheral(BLEDevice peripheral) {
   }
 
   BLECharacteristic dataChar = peripheral.characteristic(deviceServiceCharacteristicUuid);
-  
-while (peripheral.connected()) {
-  int reading1 = digitalRead(buttonPin);
-  int reading2 = digitalRead(buttonPin2);
 
-  if (reading1 == LOW && (millis() - lastDebounceTime1 > debounceDelay)) {
-    led1IsOn = !led1IsOn;
+  // Signalen van drukknoppen sturen naar peripheral Arduino als bytes
+  while (peripheral.connected()) {
+    int reading1 = digitalRead(buttonPin);
+    int reading2 = digitalRead(buttonPin2);
 
-    if (led1IsOn) {
-      dataChar.writeValue((byte)1);
+    if (reading1 == LOW && (millis() - lastDebounceTime1 > debounceDelay)) {
+      led1IsOn = !led1IsOn;
+
+      if (led1IsOn) {
+        dataChar.writeValue((byte)1);
       
-      led2IsOn = false; 
-    } else {
-      dataChar.writeValue((byte)2);
+        led2IsOn = false; 
+      } else {
+        dataChar.writeValue((byte)2);
+      }
+      lastDebounceTime1 = millis();
     }
-    lastDebounceTime1 = millis();
-  }
 
-  if (reading2 == LOW && (millis() - lastDebounceTime2 > debounceDelay)) {
-    led2IsOn = !led2IsOn;
+    if (reading2 == LOW && (millis() - lastDebounceTime2 > debounceDelay)) {
+      led2IsOn = !led2IsOn;
 
-    if (led2IsOn) {
-      dataChar.writeValue((byte)3);
+      if (led2IsOn) {
+        dataChar.writeValue((byte)3);
 
-      led1IsOn = false;
-    } else {
-      dataChar.writeValue((byte)4);
+        led1IsOn = false;
+      } else {
+        dataChar.writeValue((byte)4);
+      }
+      lastDebounceTime2 = millis();
     }
-    lastDebounceTime2 = millis();
   }
-}
 }
