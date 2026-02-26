@@ -12,10 +12,9 @@ bool blinkLed2 = false;
 unsigned long lastBlinkTime = 0;
 const int blinkInterval = 500;
 bool ledToggleState = false;
-const int led1 = 2;
-const int led2 = 3;
-const int led3 = 4;
-const int led4 = 5;
+const int led1 = 2; //linker/rechter
+const int led2 = 3; //linker/rechter
+const int led4 = 5; //remlicht
 
 float bx, by, bz;
 float gyroThreshold = 10.0;
@@ -25,7 +24,6 @@ void setup() {
   Serial.begin(115200);
   pinMode(led1, OUTPUT);
   pinMode(led2, OUTPUT);
-  pinMode(led3, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW); 
 
