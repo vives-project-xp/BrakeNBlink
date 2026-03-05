@@ -6,15 +6,15 @@ const char* deviceServiceCharacteristicUuid = "19b10001-e8f2-537e-4f6c-d104768a1
 
 BLEService customService(deviceServiceUuid); 
 BLEByteCharacteristic dataCharacteristic(deviceServiceCharacteristicUuid, BLERead | BLEWrite);
-bool blinkLed1 = false;
-bool blinkLed2 = false;
+bool blinkLinker = false;
+bool blinkRechter = false;
 
 unsigned long lastBlinkTime = 0;
 const int blinkInterval = 500;
 bool ledToggleState = false;
-const int led1 = 2; //linker/rechter
-const int led2 = 3; //linker/rechter
-const int led4 = 5; //remlicht
+const int LinkerLed = 2;
+const int RechterLed = 3;
+const int RemLed = 4;
 
 float bx, by, bz;
 float gyroThreshold = 10.0;
@@ -22,8 +22,8 @@ bool hasLeaned = false;
 
 void setup() {
   Serial.begin(115200);
-  pinMode(led1, OUTPUT);
-  pinMode(led2, OUTPUT);
+  pinMode(LinkerLed, OUTPUT);
+  pinMode(RechterLed, OUTPUT);
   pinMode(LED_BUILTIN, OUTPUT);
   digitalWrite(LED_BUILTIN, LOW); 
 
@@ -51,7 +51,7 @@ void setup() {
 }
 
 void loop() {
-  pinMode(led4, OUTPUT);
+  pinMode(RemLed, OUTPUT);
   float ax, ay, az;
 
   BLEDevice central = BLE.central();
@@ -66,9 +66,9 @@ void loop() {
           if (IMU.accelerationAvailable()) {
             IMU.readAcceleration(ax, ay, az);
             if (ax < -0.20) {
-              digitalWrite(led4, HIGH);
+              digitalWrite(RemLed, HIGH);
             } else {
-              digitalWrite(led4, LOW);
+              digitalWrite(RemLed, LOW);
             }
 
             delay(10); 
@@ -79,15 +79,15 @@ void loop() {
           if (IMU.accelerationAvailable()) {
             IMU.readAcceleration(bx, by, bz);
             float leanAngle = abs(atan2(by, bz) * 180.0 / PI);
-            if (blinkLed1 || blinkLed2) {
+            if (blinkLinker || blinkRechter) {
               if (leanAngle > 10.0) { 
                 hasLeaned = true;
               }
               if (hasLeaned && leanAngle < 2.0) {
-                blinkLed1 = false;
-                blinkLed2 = false;
-                digitalWrite(led1, LOW);
-                digitalWrite(led2, LOW);
+                blinkLinker = false;
+                blinkRechter = false;
+                digitalWrite(LinkerLed, LOW);
+                digitalWrite(RechterLed, LOW);
                 hasLeaned = false;
                 Serial.println("Turn complete: Level detected.");
               }
@@ -102,12 +102,12 @@ void loop() {
           lastBlinkTime = millis();
           ledToggleState = !ledToggleState;
 
-          if (blinkLed1) {
-            digitalWrite(led1, ledToggleState ? LOW : HIGH);
+          if (blinkLinker) {
+            digitalWrite(LinkerLed, ledToggleState ? LOW : HIGH);
           }
     
-          if (blinkLed2) {
-            digitalWrite(led2, ledToggleState ? LOW : HIGH);
+          if (blinkRechter) {
+            digitalWrite(RechterLed, ledToggleState ? LOW : HIGH);
           }
         }
       }
@@ -124,24 +124,24 @@ void loop() {
 void handleIncomingData(byte value) {
   switch (value) {
     case 1:
-      if (blinkLed1) {
-        blinkLed1 = false;
-        digitalWrite(led1, LOW);
+      if (blinkLinker) {
+        blinkLinker = false;
+        digitalWrite(LinkerLed, LOW);
       } else {
-        blinkLed1 = true;
-        blinkLed2 = false;
-        digitalWrite(led2, LOW);
+        blinkLinker = true;
+        blinkRechter = false;
+        digitalWrite(RechterLed, LOW);
       }
       break;
 
     case 3:
-      if (blinkLed2) {
-        blinkLed2 = false;
-        digitalWrite(led2, LOW);
+      if (blinkRechter) {
+        blinkRechter = false;
+        digitalWrite(RechterLed, LOW);
       } else {
-        blinkLed2 = true;
-        blinkLed1 = false;
-        digitalWrite(led1, LOW);
+        blinkRechter = true;
+        blinkLinker = false;
+        digitalWrite(LinkerLed, LOW);
       }
       break;
   }
