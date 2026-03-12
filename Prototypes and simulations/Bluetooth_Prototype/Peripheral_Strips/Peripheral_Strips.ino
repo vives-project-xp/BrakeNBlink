@@ -6,7 +6,7 @@
 #define PIN_LEFT    2
 #define PIN_RIGHT   3
 #define PIN_BRAKE   4
-#define NUM_LEDS    10 // Adjust this to the number of LEDs in EACH strip
+#define NUM_LEDS    16 // Adjust this to the number of LEDs in EACH strip
 
 Adafruit_NeoPixel stripL(NUM_LEDS, PIN_LEFT,  NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel stripR(NUM_LEDS, PIN_RIGHT, NEO_GRB + NEO_KHZ800);
@@ -28,7 +28,6 @@ bool blinkRechter = false;
 unsigned long lastBlinkTime = 0;
 const int blinkInterval = 500;
 bool ledToggleState = false;
-bool hasLeaned = false; 
 
 void setup() {
   Serial.begin(115200);
@@ -58,23 +57,10 @@ void loop() {
       // 1. BRAKE LIGHT (Strip on Pin 4)
       if (IMU.accelerationAvailable()) {
         IMU.readAcceleration(ax, ay, az);
-        fillStrip(stripB, (az < -0.20) ? red : black);
+        fillStrip(stripB, (ax < -1.2) ? red : black);
       }
 
-      // 2. AUTO-CANCEL LOGIC
-      if (IMU.accelerationAvailable()) {
-        IMU.readAcceleration(bx, by, bz);
-        float leanAngle = abs(atan2(bx, by) * 180.0 / PI);
-        if (blinkLinker || blinkRechter) {
-          if (leanAngle > 10.0) hasLeaned = true;
-          if (hasLeaned && leanAngle < 2.0) {
-            blinkLinker = false; blinkRechter = false; hasLeaned = false;
-            fillStrip(stripL, black); fillStrip(stripR, black);
-          }
-        }
-      }
-
-      // 3. BLINKING (Strips on Pin 2 and 3)
+      // 2. BLINKING (Strips on Pin 2 and 3)
       if (millis() - lastBlinkTime >= blinkInterval) {
         lastBlinkTime = millis();
         ledToggleState = !ledToggleState;
