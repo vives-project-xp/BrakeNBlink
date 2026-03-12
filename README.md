@@ -35,5 +35,5 @@ dit project is gemaakt door:
 
 ## Uitbreiding
 
-Tekstweergave in de spaken via een microcontroller met interne batterij.
+Led strips in de spaken via een microcontroller met interne batterij.
 
