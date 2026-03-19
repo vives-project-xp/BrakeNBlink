@@ -5,7 +5,7 @@ de zichtbaarheid en veiligheid van fietsers verhoogt. Het detecteert automatisch
 ---
 
 ## Doel van het project
-Fietser behoren zijn kwetsbare weggebuikers, vooral in steden of omgevingen met een beperkte zichtbaarheid. Brake N Blink verhoogt de zichtbaarheid (zeker s'nachts) van de fietser voor andere weggebruikers
+Fietsers behoren tot kwetsbare weggebuikers, vooral in steden of omgevingen met een beperkte zichtbaarheid. Brake N Blink verhoogt de zichtbaarheid (zeker s'nachts) van de fietser voor andere weggebruikers.
 
 ---
 ## Idee
@@ -35,5 +35,5 @@ dit project is gemaakt door:
 
 ## Uitbreiding
 
-Tekstweergave in de spaken via een microcontroller met interne batterij.
+Led strips in de spaken via een microcontroller met interne batterij.
 
