@@ -28,9 +28,12 @@ bool blinkRechter = false;
 unsigned long lastBlinkTime = 0;
 const int blinkInterval = 500;
 bool ledToggleState = false;
+unsigned long redStartTime = 0;
+const long duration = 1000;
 
 void setup() {
   Serial.begin(115200);
+  pinMode(LED_BUILTIN, OUTPUT);
   
   // Initialize all 3 strips
   stripL.begin(); stripR.begin(); stripB.begin();
@@ -53,11 +56,22 @@ void loop() {
 
   if (central) {
     while (central.connected()) {
-      
-      // 1. BRAKE LIGHT (Strip on Pin 4)
+
+      unsigned long currentTime = millis();
+      digitalWrite(LED_BUILTIN, HIGH);
+
+        // 1. BRAKE LIGHT (Strip on Pin 4)
       if (IMU.accelerationAvailable()) {
         IMU.readAcceleration(ax, ay, az);
-        fillStrip(stripB, (ax < -1.2) ? red : black);
+        if (ax < -0.3) {
+          redStartTime = currentTime;
+        }
+      }
+
+      if (redStartTime > 0 && (currentTime - redStartTime < duration)) {
+        fillStrip(stripB, red);
+      } else {
+        fillStrip(stripB, black);
       }
 
       // 2. BLINKING (Strips on Pin 2 and 3)
@@ -84,6 +98,9 @@ void loop() {
       }
     }
   }
+  blinkRechter = false;
+  blinkLinker = false;
+  digitalWrite(LED_BUILTIN, LOW);
 }
 
 // Helper to fill an entire strip with one color and show it
