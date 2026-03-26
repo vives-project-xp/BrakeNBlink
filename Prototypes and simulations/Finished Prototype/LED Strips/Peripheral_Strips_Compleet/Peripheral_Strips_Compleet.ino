@@ -23,8 +23,12 @@ const int brakeDelay = 100;
 bool blinkLinker = false;
 bool blinkRechter = false;
 unsigned long lastBlinkTime = 0;
-const int blinkInterval = 500;
+const int blinkInterval = 700;
 bool ledToggleState = false;
+
+int audiIndex = 0;
+unsigned long lastAudiStep = 0;
+const int audiSpeed = 40;
 
 uint32_t lastColorB = 0;
 uint32_t lastColorL = 0;
@@ -86,24 +90,37 @@ void loop() {
         if (currentTime - redStartTime >= duration) redStartTime = 0;
       }
 
-      // --- 2. BLINKING LOGIC ---
-      if (currentTime - lastBlinkTime >= blinkInterval) {
-        lastBlinkTime = currentTime;
-        ledToggleState = !ledToggleState;
-
-        if (blinkLinker) {
-          updateStrip(stripL, ledToggleState ? orange : black, lastColorL);
-          updateStrip(stripR, black, lastColorR);
-        } 
-        else if (blinkRechter) {
-          updateStrip(stripR, ledToggleState ? orange : black, lastColorR);
-          updateStrip(stripL, black, lastColorL);
-        }
-        else {
-          updateStrip(stripL, black, lastColorL);
-          updateStrip(stripR, black, lastColorR);
-        }
+    // BLINKING
+    if (blinkLinker || blinkRechter) {
+      if (millis() - lastAudiStep >= audiSpeed) {
+        lastAudiStep = millis();
+        audiIndex++;
+        if (audiIndex >= NUM_LEDS) audiIndex = 0;
       }
+    } else {
+      audiIndex = 0;
+    }
+
+    if (millis() - lastBlinkTime >= blinkInterval) {
+    lastBlinkTime = millis();
+    ledToggleState = !ledToggleState;
+
+    if (ledToggleState) audiIndex = 0; 
+    }
+
+    if (blinkLinker) {
+      updateAudiBlinker(stripL, true);
+      updateAudiBlinker(stripR, false);
+    } 
+    else if (blinkRechter) {
+      updateAudiBlinker(stripR, true);
+      updateAudiBlinker(stripL, false);
+    }
+    else {
+      updateAudiBlinker(stripL, false);
+      updateAudiBlinker(stripR, false);
+    }
+
 
       if (dataCharacteristic.written()) {
         handleIncomingData(dataCharacteristic.value());
@@ -127,6 +144,18 @@ void updateStrip(Adafruit_NeoPixel &s, uint32_t newColor, uint32_t &lastStoredCo
     s.show();
     lastStoredColor = newColor;
   }
+}
+
+void updateAudiBlinker(Adafruit_NeoPixel &strip, bool active) {
+  if (!active) {
+    for(int i=0; i<NUM_LEDS; i++) strip.setPixelColor(i, black);
+  } else {
+    // Light up LEDs from 0 to audiIndex
+    for(int i=0; i<NUM_LEDS; i++) {
+      strip.setPixelColor(i, (i <= audiIndex) ? orange : black);
+    }
+  }
+  strip.show();
 }
 
 void handleIncomingData(byte value) {

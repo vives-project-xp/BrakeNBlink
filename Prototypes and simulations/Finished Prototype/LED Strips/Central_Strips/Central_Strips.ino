@@ -5,10 +5,14 @@ const int buttonPin = 2;
 const int buttonPin2 = 3;
 #define PIN_LEFT    4
 #define PIN_RIGHT   5
+#define PIN_LEFT_AUDI 6
+#define PIN_RIGHT_AUDI 7
 #define NUM_LEDS    16 // Adjust this to the number of LEDs in EACH strip
 
 Adafruit_NeoPixel stripL(NUM_LEDS, PIN_LEFT,  NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel stripR(NUM_LEDS, PIN_RIGHT, NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel stripLA(NUM_LEDS, PIN_LEFT_AUDI,  NEO_GRB + NEO_KHZ800);
+Adafruit_NeoPixel stripRA(NUM_LEDS, PIN_RIGHT_AUDI, NEO_GRB + NEO_KHZ800);
 
 uint32_t orange = stripL.Color(255, 60, 0);
 uint32_t red    = stripL.Color(255, 0, 0);
@@ -16,8 +20,6 @@ uint32_t black  = stripL.Color(0, 0, 0);
 
 const char* deviceServiceUuid = "19b10000-e8f2-537e-4f6c-d104768a1214";
 const char* deviceServiceCharacteristicUuid = "19b10001-e8f2-537e-4f6c-d104768a1214";
-bool led1IsOn = false;
-bool led2IsOn = false;
 unsigned long lastDebounceTime1 = 0;
 unsigned long lastDebounceTime2 = 0;
 unsigned long debounceDelay = 150;
@@ -27,8 +29,11 @@ const int connectionLed = 5;
 bool blinkLinker = false;
 bool blinkRechter = false;
 unsigned long lastBlinkTime = 0;
-const int blinkInterval = 500;
+const int blinkInterval = 700;
 bool ledToggleState = false;
+int audiIndex = 0;
+unsigned long lastAudiStep = 0;
+const int audiSpeed = 40;
 
 void setup() {
   Serial.begin(9600);
@@ -75,22 +80,45 @@ void controlPeripheral(BLEDevice peripheral) {
   // Signalen van drukknoppen sturen naar peripheral Arduino als bytes
   while (peripheral.connected()) {
       // 2. BLINKING (Strips on Pin 2 and 3)
-    if (millis() - lastBlinkTime >= blinkInterval) {
-        lastBlinkTime = millis();
-        ledToggleState = !ledToggleState;
+    if (blinkLinker || blinkRechter) {
+      if (millis() - lastAudiStep >= audiSpeed) {
+        lastAudiStep = millis();
+        audiIndex++;
+        if (audiIndex >= NUM_LEDS) audiIndex = 0; // Reset sweep
+      }
+    } else {
+      audiIndex = 0; // Reset when nothing is blinking
+    }
 
-       if (blinkLinker) {
-          fillStrip(stripL, ledToggleState ? orange : black);
-          fillStrip(stripR, black); // Ensure other side is off
-       } 
-       else if (blinkRechter) {
-          fillStrip(stripR, ledToggleState ? orange : black);
-          fillStrip(stripL, black);
-        }
-       else {
-          fillStrip(stripL, black);
-          fillStrip(stripR, black);
-       }
+    // 2. BLINKING LOGIC
+    if (millis() - lastBlinkTime >= blinkInterval) {
+    lastBlinkTime = millis();
+    ledToggleState = !ledToggleState;
+    // We reset Audi sweep here to sync it with the main blinker pulse
+    if (ledToggleState) audiIndex = 0; 
+    }
+
+    if (blinkLinker) {
+      fillStrip(stripL, ledToggleState ? orange : black);
+      fillStrip(stripR, black);
+    
+      // Plug in the Audi strips here:
+      updateAudiBlinker(stripLA, true);
+      updateAudiBlinker(stripRA, false);
+    } 
+    else if (blinkRechter) {
+      fillStrip(stripR, ledToggleState ? orange : black);
+      fillStrip(stripL, black);
+    
+      // Plug in the Audi strips here:
+      updateAudiBlinker(stripRA, true);
+      updateAudiBlinker(stripLA, false);
+    }
+    else {
+      fillStrip(stripL, black);
+      fillStrip(stripR, black);
+      updateAudiBlinker(stripLA, false);
+      updateAudiBlinker(stripRA, false);
     }
 
     int reading1 = digitalRead(buttonPin);
@@ -117,4 +145,16 @@ void fillStrip(Adafruit_NeoPixel &s, uint32_t color) {
     s.setPixelColor(i, color);
   }
   s.show();
+}
+
+void updateAudiBlinker(Adafruit_NeoPixel &strip, bool active) {
+  if (!active) {
+    for(int i=0; i<NUM_LEDS; i++) strip.setPixelColor(i, black);
+  } else {
+    // Light up LEDs from 0 to audiIndex
+    for(int i=0; i<NUM_LEDS; i++) {
+      strip.setPixelColor(i, (i <= audiIndex) ? orange : black);
+    }
+  }
+  strip.show();
 }
