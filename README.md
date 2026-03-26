@@ -31,7 +31,7 @@ dit project is gemaakt door:
 - **Owen Bruneel** - fase 1, Elektronica ICT
 - **Timo Sinnaeve** - fase 1, Elektronica ICT
 - **Aaron Lestarquit** - fase 1, Elektronica ICT
-- **Adonai Brouwers** - fase 1, Elektronica ICT
+
 
 ## Uitbreiding
 
