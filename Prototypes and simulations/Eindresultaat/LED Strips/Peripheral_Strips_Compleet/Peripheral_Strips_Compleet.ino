@@ -47,6 +47,7 @@ void setup() {
   stripL.begin(); stripR.begin(); stripB.begin();
   stripL.show();  stripR.show();  stripB.show();
 
+  //bluetooth
   if (!IMU.begin()) { Serial.println("IMU fail!"); while (1); }
   if (!BLE.begin()) { Serial.println("BLE fail!"); while (1); }
 
@@ -61,13 +62,14 @@ void setup() {
 void loop() {
   float ax, ay, az;
   BLEDevice central = BLE.central();
-
+  
   if (central) {
+    // Logica tijdens verbonden
     while (central.connected()) {
       unsigned long currentTime = millis();
       digitalWrite(LED_BUILTIN, HIGH);
 
-      // --- 1. BRAKE LIGHT LOGIC ---
+      // Remlicht
       if (IMU.accelerationAvailable()) {
         IMU.readAcceleration(ax, ay, az);
 
@@ -82,7 +84,6 @@ void loop() {
           brakeConditionStarted = 0;
         }
       }
-
       if (redStartTime > 0 && (currentTime - redStartTime < duration)) {
         updateStrip(stripB, red, lastColorB);
       } else {
@@ -90,7 +91,7 @@ void loop() {
         if (currentTime - redStartTime >= duration) redStartTime = 0;
       }
 
-    // BLINKING
+    // Audi logica
     if (blinkLinker || blinkRechter) {
       if (millis() - lastAudiStep >= audiSpeed) {
         lastAudiStep = millis();
@@ -101,6 +102,7 @@ void loop() {
       audiIndex = 0;
     }
 
+    // Knipperlicht logica
     if (millis() - lastBlinkTime >= blinkInterval) {
     lastBlinkTime = millis();
     ledToggleState = !ledToggleState;
@@ -128,6 +130,7 @@ void loop() {
     }
   }
   
+  // Reset als niet connected
   blinkRechter = false;
   blinkLinker = false;
   updateStrip(stripL, black, lastColorL);
@@ -136,6 +139,7 @@ void loop() {
   digitalWrite(LED_BUILTIN, LOW);
 }
 
+// Kleur functie
 void updateStrip(Adafruit_NeoPixel &s, uint32_t newColor, uint32_t &lastStoredColor) {
   if (newColor != lastStoredColor) {
     for(int i=0; i<NUM_LEDS; i++) {
@@ -146,11 +150,11 @@ void updateStrip(Adafruit_NeoPixel &s, uint32_t newColor, uint32_t &lastStoredCo
   }
 }
 
+// Audi functie
 void updateAudiBlinker(Adafruit_NeoPixel &strip, bool active) {
   if (!active) {
     for(int i=0; i<NUM_LEDS; i++) strip.setPixelColor(i, black);
   } else {
-    // Light up LEDs from 0 to audiIndex
     for(int i=0; i<NUM_LEDS; i++) {
       strip.setPixelColor(i, (i <= audiIndex) ? orange : black);
     }
@@ -158,6 +162,7 @@ void updateAudiBlinker(Adafruit_NeoPixel &strip, bool active) {
   strip.show();
 }
 
+// Drukknop signaal verwerken van central
 void handleIncomingData(byte value) {
   switch (value) {
     case 1: blinkLinker = !blinkLinker; if (blinkLinker) blinkRechter = false; break;
