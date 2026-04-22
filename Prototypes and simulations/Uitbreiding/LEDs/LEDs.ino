@@ -1,4 +1,5 @@
 #include <Adafruit_NeoPixel.h>
+#include <Arduino_BMI270_BMM150.h>
 
 #define PIN_A       2
 #define PIN_B       3
@@ -10,13 +11,14 @@ Adafruit_NeoPixel stripB(NUMPIXELS, PIN_B, NEO_GRB + NEO_KHZ800);
 unsigned long previousMillis = 0;
 const long interval = 5000; 
 int currentMode = 0;
-const int totalModes = 7;
+const int totalModes = 8;
 
 void setup() {
   stripA.begin();
   stripB.begin();
   stripA.setBrightness(100);
   stripB.setBrightness(100);
+  if (!IMU.begin()) { Serial.println("IMU fail!"); while (1); }
 }
 
 void loop() {
@@ -51,6 +53,9 @@ void loop() {
       break;
     case 6:
       discoSparkle(20);
+      break;
+    case 7:
+      imuSpeedMeter();
       break;
   }
 }
@@ -220,6 +225,32 @@ void discoSparkle(int speed) {
   }
 }
 
+void imuSpeedMeter() {
+  static float smoothAccel = 1.0;
+  float currentAccel = getAcceleration();
+  
+  // Simple low-pass filter to make the lights less "jittery"
+  smoothAccel = (smoothAccel * 0.9) + (currentAccel * 0.1);
+
+  // Map the acceleration to the number of LEDs
+  // 1.0 is sitting still, 2.0+ is moving/shaking
+  int numLedsToLight = map(smoothAccel * 100, 100, 250, 0, NUMPIXELS);
+  numLedsToLight = constrain(numLedsToLight, 0, NUMPIXELS);
+
+  stripA.clear();
+  stripB.clear();
+
+  for (int i = 0; i < numLedsToLight; i++) {
+    // Color changes from Green to Red as it fills up
+    uint32_t color = Wheel(map(i, 0, NUMPIXELS, 85, 0)); 
+    stripA.setPixelColor(i, color);
+    stripB.setPixelColor(i, color);
+  }
+
+  stripA.show();
+  stripB.show();
+}
+
 uint32_t Wheel(byte WheelPos) {
   if(WheelPos < 85) return stripA.Color(WheelPos * 3, 255 - WheelPos * 3, 0);
   else if(WheelPos < 170) {
@@ -229,4 +260,14 @@ uint32_t Wheel(byte WheelPos) {
     WheelPos -= 170;
     return stripA.Color(0, WheelPos * 3, 255 - WheelPos * 3);
   }
+}
+
+float getAcceleration() {
+  float ax, ay, az;
+  if (IMU.accelerationAvailable()) {
+    IMU.readAcceleration(ax, ay, az);
+    // Calculate total magnitude of acceleration
+    return sqrt(ax * ax + ay * ay + az * az);
+  }
+  return 1.0; // Default gravity is ~1G
 }
