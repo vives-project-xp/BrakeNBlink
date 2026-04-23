@@ -5,7 +5,7 @@
 #define PIN_LEFT    2
 #define PIN_RIGHT   3
 #define PIN_BRAKE   4
-#define NUM_LEDS    16 
+#define NUM_LEDS    12
 
 Adafruit_NeoPixel stripL(NUM_LEDS, PIN_LEFT,  NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel stripR(NUM_LEDS, PIN_RIGHT, NEO_GRB + NEO_KHZ800);
@@ -28,7 +28,7 @@ bool ledToggleState = false;
 
 int audiIndex = 0;
 unsigned long lastAudiStep = 0;
-const int audiSpeed = 40;
+const int audiSpeed = 35;
 
 uint32_t lastColorB = 0;
 uint32_t lastColorL = 0;

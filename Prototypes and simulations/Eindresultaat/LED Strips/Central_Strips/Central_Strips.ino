@@ -8,7 +8,7 @@ const int buttonPin2 = 3;
 #define PIN_RIGHT   5
 #define PIN_LEFT_AUDI 6
 #define PIN_RIGHT_AUDI 7
-#define NUM_LEDS    16
+#define NUM_LEDS    12
 
 Adafruit_NeoPixel stripL(NUM_LEDS, PIN_LEFT,  NEO_GRB + NEO_KHZ800);
 Adafruit_NeoPixel stripR(NUM_LEDS, PIN_RIGHT, NEO_GRB + NEO_KHZ800);
@@ -34,12 +34,12 @@ const int connectionLed = 5;
 bool blinkLinker = false;
 bool blinkRechter = false;
 unsigned long lastBlinkTime = 0;
-const int blinkInterval = 700;
+const int blinkInterval = 450;
 bool ledToggleState = false;
 
 int audiIndex = 0;
 unsigned long lastAudiStep = 0;
-const int audiSpeed = 40;
+const int audiSpeed = 35;
 
 void setup() {
   Serial.begin(9600);
