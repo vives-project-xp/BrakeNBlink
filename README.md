@@ -44,6 +44,19 @@ Led strips in de spaken via een microcontroller met interne batterij. Specifiek 
 - 📁 **[Sociale media/](Sociale%20media/)**: Afbeeldingen en media voor sociale media, inclusief 3D-printing, prototypes op de fiets en solderen.
 
 ---
+## Project Management
+
+Wij maken gebruik van Trello voor de sprintplanning en issue tracking.
+
+---
+
+## Reflectie
+
+Tijdens dit project hebben we veel geleerd over het ontwerpen en implementeren van een elektronisch systeem voor fietsen. We hebben ervaring opgedaan met het gebruik van microcontrollers, Bluetooth-communicatie en het integreren van verschillende componenten zoals LED-strips en drukknoppen. We hebben ook geleerd hoe we een project kunnen structureren en documenteren, wat belangrijk is voor samenwerking en toekomstige referentie.
+
+Hoewel we enkele uitdagingen tegenkwamen, zoals het optimaliseren van de Bluetooth-verbinding en het ontwerpen van een sterke en functionele behuizing. We hebben deze problemen opgelost door middel van trial and error. Al met al heeft dit project ons waardevolle vaardigheden en inzichten opgeleverd die we in toekomstige projecten kunnen toepassen.
+
+---
 
 ## Team
 dit project is gemaakt door:
