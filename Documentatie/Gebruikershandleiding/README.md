@@ -52,4 +52,5 @@ Het remlicht gaat automatisch aan wanneer u remt.
 
 ## Onderhoud
 
+- We hebben voor de voorkant en de achterkant elk 3 AAA batterijen gebruikt. Voor de uitbreiding zijn dit 3 AA batterijen.
 - Als de batterijen leeg zijn, haal dan het deksel van de behuizing en verwijder de batterijen. Vervang ze door nieuwe batterijen van hetzelfde type of laad de batterijen op.
