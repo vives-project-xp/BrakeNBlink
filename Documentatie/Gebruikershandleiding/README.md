@@ -8,17 +8,26 @@ Volg de onderstaande stappen om het BrakeNBlink-systeem op uw fiets te monteren:
 
 Bevestig de behuizing aan de voorkant van de fiets met behulp van de bijgeleverde vijzen. Zorg ervoor dat de behuizing stevig vastzit rond de verticale metalen bar van het stuur.
 
+![Voorkant behuizing](Voorkant.jpg)
+
 ### Stap 2: Monteer de zijdelen op het stuur
 
 Monteer de 2 delen aan het stuur en bevestig elk deel met 1 vijs. Zorg voor een stabiele en veilige bevestiging.
+
+![Drukknoppen op stuur](Drukknop_Stuur.jpg)
 
 ### Stap 3: Bevestig de achterkant
 
 Bevestig de achterkant van het systeem met behulp van 4 velcro straps. Zorg dat deze goed vastzitten om te voorkomen dat het systeem losraakt tijdens het fietsen.
 
+![Achterkant](Achterkant.jpg)
+
 ### Stap 4: Activeer de schuifknoppen
 
 Schakel de schakelaars in om het systeem te activeren. De schakelaars zitten aan de linkerkant van beide behuizingen.
+
+![Schakelaar voorkant](Schakelaar_Voorkant.jpg)
+![Schakelaar achterkant](Schakelaar_Achter.jpg)
 
 ---
 

@@ -1,0 +1,103 @@
+var Syndeo = /** @class */ (function () {
+    function Syndeo() {
+        var _this = this;
+        this.getCustomAttachedData = function () { return ({}); };
+        this.getCustomRulesData = function () { return ({}); };
+        this.getHeaders = function () { return ({}); };
+        this.getFileUrl = function (fileKey, conversationId) {
+            return _this.isJson(fileKey)
+                ? JSON.parse(fileKey).url
+                : fileKey;
+        };
+        this.getFileName = function (fileKey) {
+            return _this.isJson(fileKey)
+                ? JSON.parse(fileKey).filename
+                : fileKey.substring(fileKey.lastIndexOf('/') + 1, fileKey.length);
+        };
+        this.getSentFileUrl = function (fileKey) {
+            return fileKey;
+        };
+        this.getSentFileName = function (fileUrl) {
+            return fileUrl.substring(fileUrl.lastIndexOf('/') + 1, fileUrl.length);
+        };
+        this.isChatIconDisabled = function () { return Promise.resolve(false); };
+        this.getUrls = function () { return ({}); };
+        this.openChat = function () {
+            globalThis.dispatchEvent(new Event("syndeo-open-chat"));
+        };
+        this.showInviteMessage = function (inviteMessage) {
+            globalThis.dispatchEvent(new CustomEvent("syndeo-show-invite-message", {
+                detail: {
+                    inviteMessage: inviteMessage || null
+                }
+            }));
+        };
+        this.selectNewProfile = function (profileId) {
+            var resultEvent = "syndeo-select-new-profile-result";
+            return new Promise(function (resolve) {
+                var overridingResult = function (event) {
+                    var overrideProfile = event.detail.overrideProfile;
+                    resolve(overrideProfile);
+                };
+                globalThis.addEventListener(resultEvent, overridingResult, { once: true });
+                setTimeout(function () {
+                    globalThis.removeEventListener(resultEvent, overridingResult);
+                    resolve(false);
+                }, 5000);
+                globalThis.dispatchEvent(new CustomEvent("syndeo-select-new-profile", {
+                    detail: {
+                        profileId: profileId
+                    }
+                }));
+            });
+        };
+        this.sendCustomWebEvent = function (customDetails) {
+            // Confirm customDetails is a valid object, otherwise we ignore the request to send the event
+            if (typeof customDetails === 'object' && customDetails !== null) {
+                globalThis.dispatchEvent(new CustomEvent("syndeo-send-custom-web-event", {
+                    detail: customDetails || null
+                }));
+            }
+        };
+    }
+    Syndeo.prototype.setCustomAttachedDataFunction = function (getCustomAttachedData) {
+        this.getCustomAttachedData = getCustomAttachedData;
+    };
+    Syndeo.prototype.setCustomRulesDataFunction = function (getCustomRulesData) {
+        this.getCustomRulesData = getCustomRulesData;
+    };
+    Syndeo.prototype.setFileUrlFunction = function (getFileUrl) {
+        this.getFileUrl = getFileUrl;
+    };
+    Syndeo.prototype.setFileNameFunction = function (getFileName) {
+        this.getFileName = getFileName;
+    };
+    Syndeo.prototype.setSentFileUrlFunction = function (getSentFileUrl) {
+        this.getSentFileUrl = getSentFileUrl;
+    };
+    Syndeo.prototype.setSentFileNameFunction = function (getSentFileName) {
+        this.getSentFileName = getSentFileName;
+    };
+    Syndeo.prototype.setIsChatIconDisabledFunction = function (isChatIconDisabled) {
+        this.isChatIconDisabled = isChatIconDisabled;
+    };
+    Syndeo.prototype.setUrls = function (getUrls) {
+        this.getUrls = getUrls;
+    };
+    Syndeo.prototype.withHeaders = function (getHeaders) {
+        this.getHeaders = getHeaders;
+        return this;
+    };
+    Syndeo.prototype.isJson = function (test) {
+        try {
+            JSON.parse(test);
+        }
+        catch (e) {
+            return false;
+        }
+        return true;
+    };
+    return Syndeo;
+}());
+globalThis.Syndeo = new Syndeo();
+globalThis.dispatchEvent(new Event("syndeo-sdk-ready"));
