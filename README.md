@@ -21,6 +21,9 @@ Achteraan zit een microcontroller die het remlicht aanstuurt op basis van de int
 ### Uitbreiding
 Led strips in de spaken via een microcontroller met interne batterij. Specifiek hebben we twee LED-strips tegenover elkaar gemonteerd op het voorwiel van de fiets. Deze strips produceren verschillende lichtpatronen, aangestuurd door een microcontroller, om de zichtbaarheid en esthetiek van de fiets te verbeteren.
 
+### Gebruikershandleiding
+Hier vindt u de [gebruikershandleiding](Documentatie/Gebruikershandleiding/) met instructies voor het gebruik en onderhoud van het BrakeNBlink-systeem.
+
 ---
 ## Project Management
 
@@ -42,6 +45,7 @@ Hoewel we enkele uitdagingen tegenkwamen, zoals het optimaliseren van de Bluetoo
 - 📁 **[Documentatie/](Documentatie/)**: Omvat alle documentatie gerelateerd aan het project.
   - 📁 **[Datasheets & Materiaal lijst/](Documentatie/Datasheets%20%26%20Materiaal%20lijst/)**: Datasheets, materiaaloverzichten en informatie over componenten zoals batterijhouders, bedrading, drukknoppen, LED-strips, microcontroller (Arduino), printplaten en batterijen.
   - 📁 **[Gids/](Documentatie/Gids/)**: Handleidingen, zoals de GitHub-gids.
+  - 📁 **[Gebruikershandleiding/](Documentatie/Gebruikershandleiding/)**: Gebruikershandleiding voor het systeem.
   - 📁 **[Knoppen/](Documentatie/Knoppen/)**: Documentatie over de drukknoppen.
   - 📁 **[Overzichten/](Documentatie/Overzichten/)**: Overzichten van materialen, inclusief specifieke informatie over drukknoppen.
   - 📁 **[Voorstellingen/](Documentatie/Voorstellingen/)**: Sprekersnotities voor presentaties.
