@@ -52,4 +52,4 @@ Het remlicht gaat automatisch aan wanneer u remt.
 
 ## Onderhoud
 
-- Als de batterijen leeg zijn, haal dan het deksel van de behuizing en verwijder de batterijen. Vervang ze door nieuwe batterijen van hetzelfde type. Of laad de batterijen op.
+- Als de batterijen leeg zijn, haal dan het deksel van de behuizing en verwijder de batterijen. Vervang ze door nieuwe batterijen van hetzelfde type of laad de batterijen op.
