@@ -9,12 +9,23 @@ Gedetailleerde printinstructies en technische specificaties voor alle onderdelen
 ```
 3D Print Files/
 ├── README_3D_Print.md        # Dit bestand
-├── Voorkant/                 # Frontale behuizing
-│   ├── voorkant.stl
-├── Achterkant/               # Achterkant behuizing
-│   ├── achterkant.stl
-└── Stuur/                    # Stuurelement
-    ├── stuur.stl
+├── Voorkant/                 # Behuizing voorkant
+│   ├── voorkant_behuizing.stl
+│   ├── voorkant_behuizing_deksel.stl
+│   ├── voorkant_key.stl
+│   ├── voorkant_led_links.stl
+│   ├── voorkant_led_rechts.stl
+├── Achterkant/               # Behuizing achterkant
+│   ├── achterkant_behuizing.stl
+│   ├── achterkant_behuizing_deksel.stl
+│   ├── achterkant_led_strip_links.stl
+│   ├── achterkant_led_strip_rechts.stl
+└── Stuur/                    # Stuur
+    ├── stuur_behuizing_links.stl
+    ├── stuur_behuizing_rechts.stl
+    ├── stuur_mount_links.stl
+    ├── stuur_led_cover.stl
+    ├── TPU_stuur_knop_cover.stl
 
 ```
 ---
@@ -33,12 +44,12 @@ Gedetailleerde printinstructies en technische specificaties voor alle onderdelen
 
 ### Algemene Instellingen
 ```
-Laagdikte:           0.2 mm (standaard) / 0.1 mm (detail)
-Vulling:             15-20% (honeycomb of grid patroon)
-Ondersteuning:       Standaard (alleen waar nodig)
-Snelheid:            50 mm/s (standaard)
+Laag hoogte:           0.2 mm (standaard)
+Vulling:             15-20% (grid patroon)
+Support:             Niet nodig
+Snelheid:            (standaard)
 Bedtemperatuur:      60°C (PLA) / 80°C (ABS) / 90°C (PETG)
-Nozzle Temperatuur:  200°C (PLA) / 230°C (ABS) / 235°C (PETG)
+Nozzle Temperatuur:  220°C (PLA) / 230°C (ABS) / 235°C (PETG)
 ```
 
 ### Per Onderdeel Geoptimaliseerd
