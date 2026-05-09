@@ -2,7 +2,7 @@
 Brake N Blink is een (semi) automatisch rem en richtingaanwijzersysteem voor fietsen dat
 de zichtbaarheid en veiligheid van fietsers verhoogt. Het detecteert automatisch via een IMU/Knoppen of de fietser remt/gaat afslaan en stuurt zo de remlichten en richtingaanwijzers aan.
 
-![alt text](image.png)
+![alt text](1000003688.jpg)
 
 ---
 
