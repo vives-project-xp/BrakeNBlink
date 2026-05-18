@@ -5,7 +5,7 @@
 Dit project bevat de volledige 3D-modellering voor de behuizing van **BrakeNBlink**. De modellen zijn ontworpen in Blender en geoptimaliseerd voor 3D-printing. In de uitbreiding folder, vind je de bestanden voor de uitbreiding.
 
 **BrakeNBlink** bestaat uit drie delen + uitbreiding:
-- **Voorkant**: bevat de elektronika en richtingaanwijzers
+- **Voorkant**: bevat de elektronica en richtingaanwijzers
 - **Achterkant**: ook elektronica met richtingaanwijzers en achterlicht
 - **Stuur**: knoppen om richtingaanwijzers aan te zetten met een korte richtingaanwijzer ledstrip.
 - - **Uitbreiding**: extra zichbaarheid aan het wiel
