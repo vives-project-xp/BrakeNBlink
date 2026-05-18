@@ -4,18 +4,19 @@
 
 Dit project bevat de volledige 3D-modellering voor de behuizing van **BrakeNBlink**. De modellen zijn ontworpen in Blender en geoptimaliseerd voor 3D-printing. In de uitbreiding folder, vind je de bestanden voor de uitbreiding.
 
-**BrakeNBlink** bestaat uit drie delen:
+**BrakeNBlink** bestaat uit drie delen + uitbreiding:
 - **Voorkant**: bevat de elektronika en richtingaanwijzers
 - **Achterkant**: ook elektronica met richtingaanwijzers en achterlicht
 - **Stuur**: knoppen om richtingaanwijzers aan te zetten met een korte richtingaanwijzer ledstrip.
+- - **Uitbreiding**: extra zichbaarheid aan het wiel
 
 ---
 
-## 3d modelling software
+## Gebruikte modelling software
 
 - **Blender** 4.3.2 - 3D modellering en design
-- **Formaat**: .blend (Blender native format)
-- **Export formaat**: .stl (voor 3D-printing)
+- **Formaat**: .blend & .blend1 (Blender native format)
+- **Export formaat**: .stl voor 3D-printing
 
 ---
 
@@ -23,14 +24,14 @@ Dit project bevat de volledige 3D-modellering voor de behuizing van **BrakeNBlin
 
 ```
 3D model behuizing/
-├── BrakeNBlink Behuizing.blend     # Blender hoofdbestand met alle modellen
-├── README.md                          # Dit bestand - Projectdocumentatie
-├── 3D Print Files/                    # 3D-printbare onderdelen
-│   ├── Voorkant/                      # Frontale behuizing
-│   ├── Achterkant/                    # Achterkant behuizing
-│   └── Stuur/                         # Stuurelement
-│   └── README_3D_Print.md         # Printinstructies & instellingen
-└── Uitbreiding/                       # Toekomstige uitbreidingen
+├── BrakeNBlink Behuizing.blend     # Blender hoofdbestand
+├── README.md                          # Dit bestand
+├── 3D Print Files/                    
+│   ├── Voorkant/                      # Behuizing voorkaant
+│   ├── Achterkant/                    # Behuizing achterkant
+│   └── Stuur/                         # Behuizing op het stuur
+│   └── README_3D_Print.md         # Print instellingen
+└── Uitbreiding/                       # Deel aan het wiel
 ```
 
 ---
@@ -49,52 +50,22 @@ Dit project bevat de volledige 3D-modellering voor de behuizing van **BrakeNBlin
 
 Alle printbare onderdelen bevinden zich in de `3D Print Files/` map. Elk onderdeel is afzonderlijk beschikbaar als `.stl`-bestand:
 
-| Onderdeel   | Locatie           | Materiaal         |
-|-------------|-------------------|-------------------|
-| **Voorkant** | `3D Print Files/Voorkant/` | ABS/PETG/ASA |
-| **Achterkant** | `3D Print Files/Achterkant/` | ABS/PETG/ASA |
-| **Stuur** | `3D Print Files/Stuur/` | ABS/PETG/ASA |
-
-Raadpleeg **`README_3D_Print.md`** in de 3D Print Files map voor gedetailleerde printinstellingen, slicersoftware en materiaalkeuzes.
-
 ---
 
 ## Montage
 
-
-#### Achterkant Assemblage (Basis)
-
-
-#### Voorkant Assemblage
-
-
-#### Stap Stuurelement Bevestiging
-
-
 ---
 
-### In Blender aanpassen:
-1. Open `BrakeNBlink Behuizing.blend1` in Blender
-2. Selecteer de collectie die u wilt wijzigen
+### bestanden in Blender aanpassen:
+1. Open `BrakeNBlink Behuizing.blend` in Blender
+2. Selecteer de collectie die je wilt wijzigen
 3. Maak de gewenste wijzigingen
-4. Exporteer naar `.stl` via: **File > Export > Stereolithography (.stl)**
-5. Plaats het bijgewerkte `.stl`-bestand in de bijbehorende 3D Print Files-map
+4. Exporteer naar `.stl` via: **File > Export > .stl**
 
 ---
 
-
-## Materialen & Resources
-
-### Aanbevolen 3D-printmaterialen
-- **ABS** of **PLA**: Structurele sterkte en detail
-- **PETG**: Verbeterde duurzaamheid en weerstand
-- **TPU**: Scharnier- en rubberdichting
-
-### Benodigde hardware
-- M3 en M4 RVS bouten en moeren
-- Waterdichte kabeldoorvoeringstukken
-- Siliconen afdichtingsmiddel
-- Siliconenveertjes (voor knopvering)
+### Benodigde hardware voor installatie
+- M4 bouten en moeren
 
 ---
 
@@ -102,5 +73,4 @@ Raadpleeg **`README_3D_Print.md`** in de 3D Print Files map voor gedetailleerde 
 
 - Voor vragen over de modellering: raadpleeg het Blender-bestand
 - Voor printinstellingen: zie `3D Print Files/README_3D_Print.md`
-- Zorg voor goede ventilatie bij het drukken van ABS
 
