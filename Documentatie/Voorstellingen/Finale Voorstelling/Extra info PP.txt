@@ -1,0 +1,5 @@
+remote: error: Trace: b9c62019eaaad30f973fd03236cbd765a5ce48beb432659b158a3819029bced2
+remote: error: See https://gh.io/lfs for more information.
+remote: error: File Documentatie/Voorstellingen/Finale Voorstelling/Presentatie BrakeNBlink_V2.pptx is 236.62 MB; this exceeds GitHub's file size limit of 100.00 MB
+remote: error: File Documentatie/Voorstellingen/Finale Voorstelling/Foto's/Wiiel.gif is 121.44 MB; this exceeds GitHub's file size limit of 100.00 MB
+remote: error: GH001: Large files detected. You may want to try Git Large File Storage - https://git-lfs.github.com.
