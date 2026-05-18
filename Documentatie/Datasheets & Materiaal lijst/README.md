@@ -15,7 +15,7 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
    - Arduino Nano 33 BLE Sense Rev2
    - 2x Drukknop
    - 2x LED strip (richtingaanwijzer links/rechts)
-   - Batterij (2x 18650)
+   - Batterij (3 x AAA)
           |
           | Bluetooth Low Energy (BLE)
           |
@@ -23,13 +23,13 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
    - Arduino Nano 33 BLE Sense Rev2
    - IMU ingebouwd (BMI270 + BMM150)
    - 3x LED strip (links / rechts / rem)
-   - Batterij (2x 18650)
+   - Batterij (3 x AAA)
 
 [ Uitbreidingsmodule (optioneel) ]
    - Arduino Nano 33 BLE Sense Rev2
    - 2x LED strip (spaken)
    - IMU (snelheidsmeter)
-   - Batterij (eigen)
+   - Batterij (3 x AA)
 ```
 
 ---
@@ -42,13 +42,13 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
 |------------------------|-------------------------------------|
 | Voedingsspanning       | 3.3 V (logica) / 5 V (USB / VIN)   |
 | Max stroom per I/O pin | 15 mA                               |
-| Aanbevolen VIN         | 6 – 21 V                            |
+| Aanbevolen VIN         | 5 – 21 V                            |
 | BLE                    | Bluetooth 5.0                       |
 | IMU                    | BMI270 (accel/gyro) + BMM150 (mag)  |
 | Afmetingen             | 45 × 18 mm                          |
-| Verbruik actief        | _invullen_ mA                       |
-| Verbruik BLE actief    | _invullen_ mA                       |
-| Max vermogen           | _invullen_ W                        |
+| Verbruik actief        | 60 mA                               |
+| Verbruik BLE actief    | 70 mA                               |
+| Max vermogen           | 0.35 W                              |
 
 > Wordt gebruikt in: Stuurmodule (Central), Achtermodule (Peripheral) en Uitbreidingsmodule.
 
@@ -59,9 +59,9 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
 | Eigenschap               | Waarde                                              |
 |--------------------------|-----------------------------------------------------|
 | Voedingsspanning         | 5 V DC                                              |
-| Stroom per LED (volledig)| _invullen_ mA                                       |
-| Max stroom (16 LEDs)     | _invullen_ mA                                       |
-| Max vermogen (16 LEDs)   | _invullen_ W                                        |
+| Stroom per LED (volledig)| 80 mA                                                |
+| Max stroom (16 LEDs)     | 1280 mA                                              |
+| Max vermogen (16 LEDs)   | 6.4 W                                                |
 | Kleur                    | RGB + Natuurlijk Wit                                |
 | Waterdichtheid           | IP65                                                |
 | Dataprotocol             | NeoPixel (800 kHz)                                  |
@@ -87,8 +87,8 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
 | Type                 | Mechanische drukknop, 2-pin             |
 | Standaard toestand   | HOOG (INPUT_PULLUP actief)              |
 | Ingedrukt            | Verbonden met GND → LAAG               |
-| Max spanning         | _invullen_ V                            |
-| Max stroom           | _invullen_ mA                           |
+| Max spanning         | 12 V                                    |
+| Max stroom           | 100 mA                                  |
 | Debounce tijd (code) | 150 ms                                  |
 
 **Aansluitingen:**
@@ -100,16 +100,22 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
 
 ---
 
-### 3.4 Batterij — 2× 18650 (Sparkfun Batterijhouder)
+### 3.4.1 Batterij — 3 × AAA 
 
-| Eigenschap          | Stuurmodule        | Achtermodule       | Uitbreidingsmodule |
-|---------------------|--------------------|--------------------|--------------------|
-| Aantal cellen       | 2× 18650           | 2× 18650           | _invullen_         |
-| Nominale spanning   | _invullen_ V       | _invullen_ V       | _invullen_ V       |
-| Capaciteit          | _invullen_ mAh     | _invullen_ mAh     | _invullen_ mAh     |
-| Max ontlaadstroom   | _invullen_ A       | _invullen_ A       | _invullen_ A       |
-| Connector           | JST-SM 3-pin       | JST-SM 3-pin       | _invullen_         |
-| Laadspanning        | _invullen_ V       | _invullen_ V       | _invullen_ V       |
+| Eigenschap          | Stuurmodule        | Achtermodule       |
+|---------------------|--------------------|--------------------|
+| Aantal cellen       | 3 × AAA             | 3 × AAA             |
+| Nominale spanning   | 4.5 V              | 4.5 V              |
+| Capaciteit          | 3000 mAh           | 3000 mAh           | 
+| Max ontlaadstroom   | 1.5 A              | 1.5 A              |
+
+### 3.4.2 Batterij — 3 × AA 
+
+| Eigenschap          | Uitbreidingsmodule |
+|---------------------|--------------------|
+| Aantal cellen       | 3 × AA              |
+| Nominale spanning   | 4.5 V              |
+| Capaciteit          | 2400 mAh           |
 
 ---
 
@@ -199,31 +205,31 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
 
 | Component               | Spanning (V) | Stroom (mA) | Vermogen (W) |
 |-------------------------|--------------|-------------|--------------|
-| Arduino Nano 33 BLE     | 3.3 / 5      | _invullen_  | _invullen_   |
-| LED strip Links (16×)   | 5            | _invullen_  | _invullen_   |
-| LED strip Rechts (16×)  | 5            | _invullen_  | _invullen_   |
+| Arduino Nano 33 BLE     | 3.3 / 5      | 65          | 0.21         |
+| LED strip Links (16×)   | 5            | 1280        | 6.4          |
+| LED strip Rechts (16×)  | 5            | 1280        | 6.4          |
 | Drukknop Links          | 3.3          | ≈ 0         | ≈ 0          |
 | Drukknop Rechts         | 3.3          | ≈ 0         | ≈ 0          |
-| **Totaal**              |              | _invullen_  | _invullen_   |
+| **Totaal**              |              | 2625        | 13.01        |
 
 ### 6.2 Achtermodule
 
 | Component               | Spanning (V) | Stroom (mA) | Vermogen (W) |
 |-------------------------|--------------|-------------|--------------|
-| Arduino Nano 33 BLE     | 3.3 / 5      | _invullen_  | _invullen_   |
-| LED strip Links (16×)   | 5            | _invullen_  | _invullen_   |
-| LED strip Rechts (16×)  | 5            | _invullen_  | _invullen_   |
-| LED strip Rem (16×)     | 5            | _invullen_  | _invullen_   |
-| **Totaal**              |              | _invullen_  | _invullen_   |
+| Arduino Nano 33 BLE     | 3.3 / 5      | 65          | 0.21         |
+| LED strip Links (16×)   | 5            | 1280        | 6.4          |
+| LED strip Rechts (16×)  | 5            | 1280        | 6.4          |
+| LED strip Rem (16×)     | 5            | 1280        | 6.4          |
+| **Totaal**              |              | 3905        | 19.41        |
 
 ### 6.3 Uitbreidingsmodule
 
 | Component               | Spanning (V) | Stroom (mA) | Vermogen (W) |
 |-------------------------|--------------|-------------|--------------|
-| Arduino Nano 33 BLE     | 3.3 / 5      | _invullen_  | _invullen_   |
-| LED strip A (16×)       | 5            | _invullen_  | _invullen_   |
-| LED strip B (16×)       | 5            | _invullen_  | _invullen_   |
-| **Totaal**              |              | _invullen_  | _invullen_   |
+| Arduino Nano 33 BLE     | 3.3 / 5      | 65          | 0.21         |
+| LED strip A (16×)       | 5            | 1280        | 6.4          |
+| LED strip B (16×)       | 5            | 1280        | 6.4          |
+| **Totaal**              |              | 2625        | 12.81        |
 
 ---
 
@@ -231,9 +237,9 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
 
 | Bibliotheek            | Versie     | Gebruik                           |
 |------------------------|------------|-----------------------------------|
-| ArduinoBLE             | _invullen_ | Bluetooth Low Energy communicatie |
-| Adafruit NeoPixel      | _invullen_ | SK6812 LED strip aansturing       |
-| Arduino_BMI270_BMM150  | _invullen_ | IMU (accelerometer / gyroscoop)   |
+| ArduinoBLE             | 1.2.0      | Bluetooth Low Energy communicatie |
+| Adafruit NeoPixel      | 1.10.0     | SK6812 LED strip aansturing       |
+| Arduino_BMI270_BMM150  | 1.0.2      | IMU (accelerometer / gyroscoop)   |
 
 ---
 
@@ -270,15 +276,3 @@ Optioneel is er een **uitbreidingsmodule** met LED-strips in de spaken van het w
 
 ---
 
-## 10. Te vervolledigen
-
-| Onderdeel                           | Status     |
-|-------------------------------------|------------|
-| Stroomverbruik Arduino meten        | _invullen_ |
-| Stroomverbruik per LED meten        | _invullen_ |
-| Batterijduur berekenen              | _invullen_ |
-| Exacte 18650 batterijspecificaties  | _invullen_ |
-| Knop specificaties (max V / A)      | _invullen_ |
-| BEC spanning / stroom specs         | _invullen_ |
-| Bibliotheekversies                  | _invullen_ |
-| PCB / printplaat schema             | _invullen_ |
