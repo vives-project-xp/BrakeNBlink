@@ -42,14 +42,15 @@ Met standaard Bambulab instellingen, zijn dit de geschatte gewichten en printtij
 | Achterkant | `achterkant_behuizing_deksel.stl` | 1x | ~64g | 1h46m |
 | Achterkant | `achterkant_led_strip_links.stl` | 1x | ~12.3g | 0h27m |
 | Achterkant | `achterkant_led_strip_rechts.stl` | 1x | ~12.3g | 0h27m |
+| Achterkant | `achterkant_key.stl` | 2x | ~0.7g | 0h12m |
 | Stuur | `stuur_behuizing_links.stl` | 1x | ~14.4g | 0h37m |
 | Stuur | `stuur_behuizing_rechts.stl` | 1x | ~14.4g | 0h37m |
-| Stuur | `stuur_led_cover.stl` | 1x | ~1.8g | 0h15m |
-| Stuur | `stuur_mount.stl` | 1x | ~4g | 0h25m |
-| Stuur | `stuur_mount.stl` | 1x | ~1.4g | 0h13m |
+| Stuur | `stuur_led_cover.stl` | 2x | ~1.8g | 0h15m |
+| Stuur | `stuur_mount.stl` | 2x | ~4g | 0h25m |
+| Stuur | `TPU_stuur_knop_cover.stl` | 2x | ~1.4g | 0h13m |
 | Voorkant | `voorkant_behuizing.stl` | 1x | ~90g | 2h39m |
 | Voorkant | `voorkant_behuizing_deksel.stl` | 1x | ~35.4g | 1h0m |
-| Voorkant | `voorkant_key.stl` | 1x | ~0.7g | 0h12m |
+| Voorkant | `voorkant_key.stl` | 2x | ~0.7g | 0h12m |
 | Voorkant | `voorkant_led_links.stl` | 1x | ~23.6g | 0h44m |
 | Voorkant | `voorkant_led_rechts.stl` | 1x | ~23.6g | 0h44m |
 

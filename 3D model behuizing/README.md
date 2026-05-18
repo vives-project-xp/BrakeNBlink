@@ -8,7 +8,7 @@ Dit project bevat de volledige 3D-modellering voor de behuizing van **BrakeNBlin
 - **Voorkant**: bevat de elektronika en richtingaanwijzers
 - **Achterkant**: ook elektronica met richtingaanwijzers en achterlicht
 - **Stuur**: knoppen om richtingaanwijzers aan te zetten met een korte richtingaanwijzer ledstrip.
-- - **Uitbreiding**: extra zichbaarheid aan het wiel
+- **Uitbreiding**: extra zichbaarheid aan het wiel
 
 ---
 
